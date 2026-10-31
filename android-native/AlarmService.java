@@ -29,6 +29,7 @@ import org.json.JSONObject;
  *  - Every few seconds: if the app isn't on the screen, it is brought back (needs "display over other apps").
  *  - No answer to the awake check within a minute → ring again, with the task.
  *  - Nobody stopped it for an hour → it gives up (an empty house shouldn't ring all day).
+ *  - During a phone call it goes quiet and doesn't jump over the call; it comes back when the call ends.
  * The sound only stops from the app, after the tasks (or a snooze it allows).
  */
 public class AlarmService extends Service {
@@ -150,7 +151,7 @@ public class AlarmService extends Service {
             player.setLooping(true);
             player.setWakeMode(this, PowerManager.PARTIAL_WAKE_LOCK);
             player.prepare();
-            player.start();
+            if (!inCall(this)) player.start(); // during a call it starts when the call ends (watchdog)
         } catch (Exception e) {
             releasePlayer();
             if (allowFallback) playSound(Sounds.builtin(this, "classic"), false);
@@ -190,11 +191,25 @@ public class AlarmService extends Service {
     private final Runnable watchdog = new Runnable() {
         @Override public void run() {
             if (!RingState.active(AlarmService.this)) { end(); stopSelf(); return; }
-            maxVolume();
-            if (!MainActivity.visible) bringAppToFront();
-            h.postDelayed(this, 2500);
+            boolean call = inCall(AlarmService.this);
+            if (player != null) {
+                try { if (call && player.isPlaying()) player.pause(); else if (!call && !player.isPlaying()) player.start(); } catch (Exception ignored) { }
+            }
+            if (!call) {
+                maxVolume();
+                if (!MainActivity.visible) bringAppToFront();
+            }
+            h.postDelayed(this, call ? 1500 : 2500);
         }
     };
+
+    /** A phone call is ringing or going on (no permission needed to know this). */
+    static boolean inCall(Context c) {
+        AudioManager am = (AudioManager) c.getSystemService(Context.AUDIO_SERVICE);
+        if (am == null) return false;
+        int m = am.getMode();
+        return m == AudioManager.MODE_IN_CALL || m == AudioManager.MODE_IN_COMMUNICATION || m == AudioManager.MODE_RINGTONE;
+    }
 
     private final Runnable checkTimeout = () -> {
         if (!"check".equals(RingState.mode(this))) return;
@@ -215,7 +230,7 @@ public class AlarmService extends Service {
 
     /** Puts the app (the task) back on the screen. Android allows it with "display over other apps". */
     private void bringAppToFront() {
-        if (MainActivity.visible) return;
+        if (MainActivity.visible || inCall(this)) return;
         if (Build.VERSION.SDK_INT >= 29 && !Settings.canDrawOverlays(this)) return;
         try {
             Intent i = new Intent(this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_SINGLE_TOP);

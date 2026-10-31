@@ -74,7 +74,7 @@ public class MainActivity extends BridgeActivity {
     }
 
     private final Runnable comeBack = () -> {
-        if (visible || !RingState.active(this)) return;
+        if (visible || !RingState.active(this) || AlarmService.inCall(this)) return;
         if (Build.VERSION.SDK_INT >= 29 && !Settings.canDrawOverlays(this)) return;
         try {
             startActivity(new android.content.Intent(this, MainActivity.class)
