@@ -1,0 +1,21 @@
+{
+  "id": "kamti",
+  "title": "קמתי – השעון המעורר שלא מוותר",
+  "description": "שעון מעורר לאנדרואיד שלא נכבה עד שפותרים תרגיל, הולכים כמה צעדים, מנערים את הטלפון או מקלידים \"מודה אני\". הווליום נעול, והשעון חוזר גם אחרי כיבוי. עובד בלי אינטרנט, גם בנגנים. פותח על ידי Itzko.",
+  "themeColor": "#5B3DF5",
+  "icon": "www/icon-512.png",
+  "fonts": "www/fonts",
+  "appDir": "www",
+  "versionFile": "js/version.js",
+  "versionGlobal": "KAMTI_VERSION",
+  "shots": "scripts/site/scenes.mjs",
+  "css": ["brand.css"],
+  "creditText": "קמתי היא אפליקציה עצמאית של Itzko: בלי פרסומות, בלי הרשמה, והשעונים והיומן נשארים אצלכם בטלפון. כל רעיון או תקלה מגיעים ישירות אליו דרך \"פנייה / הצעת ייעול\" בהגדרות של האפליקציה.",
+  "footerNote": "השעונים, הבקרים והשעות בצילומי המסך הם לדוגמה.",
+  "parts": [
+    "hero", "WHATS_NEW", "offline", "install", "tabs",
+    "ch-home", "ch-edit", "ch-tasks", "ch-tasks-more", "ch-ring", "ch-check", "ch-player", "ch-setup",
+    "ch-log", "ch-settings", "ch-share", "ch-updates", "ch-feedback", "ch-iphone",
+    "kit:share-band", "kit:credit", "kit:footer"
+  ]
+}
