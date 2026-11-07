@@ -1,0 +1,58 @@
+/* The tasks on the ringing screen: sums keypad, step/shake ring, typing, memory board, numbers board, camera */
+.task-count { font-size: 13px; font-weight: 700; color: #C9BFFF; letter-spacing: .3px; }
+.task-lead { margin: 0; font-size: 17px; font-weight: 600; color: #F1EDFF; }
+.task-msg { margin: 0; min-height: 20px; font-size: 14px; color: #CFC8EE; }
+.task-msg.bad { color: #FFB4AB; font-weight: 600; }
+
+.math-q { display: flex; align-items: baseline; justify-content: center; gap: 12px; font-size: 40px; font-weight: 800; padding: 14px 18px; border-radius: 20px; background: rgba(255, 255, 255, 0.08); width: 100%; flex-wrap: wrap; }
+.math-q .ans { min-width: 88px; padding: 0 10px; border-radius: 12px; background: rgba(255, 201, 60, 0.18); color: #FFE29A; text-align: center; }
+.math-q .ans i { font-style: normal; opacity: .5; }
+.math-q.bad { animation: shake .35s; background: rgba(255, 120, 110, 0.18); }
+.math-q.good .ans { background: rgba(111, 208, 142, 0.22); }
+@keyframes shake { 0%, 100% { transform: none; } 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
+.keypad { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; width: 100%; }
+.key { min-height: 62px; border: 0; border-radius: 18px; background: rgba(255, 255, 255, 0.12); color: #FFFFFF; font-size: 28px; font-weight: 600; display: flex; align-items: center; justify-content: center; touch-action: manipulation; }
+.key:active { background: rgba(255, 255, 255, 0.24); }
+.key.fn { background: rgba(255, 255, 255, 0.06); }
+.key.ok { background: #FFC93C; color: #2A1B05; }
+
+.move-ring { position: relative; width: 220px; height: 220px; }
+.move-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.move-ring .track { fill: none; stroke: rgba(255, 255, 255, 0.12); stroke-width: 10; }
+.move-ring .fill { fill: none; stroke: #FFC93C; stroke-width: 10; stroke-linecap: round; transition: stroke-dashoffset .25s; }
+.move-in { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; }
+.move-in svg { color: #FFC93C; width: 30px; height: 30px; transform: none; }
+.move-in b { font-size: 60px; line-height: 1; font-weight: 800; }
+.move-in span { font-size: 14px; color: #CFC8EE; }
+
+.type-target { width: 100%; text-align: right; font-size: 22px; line-height: 1.7; font-weight: 600; padding: 14px 16px; border-radius: 18px; background: rgba(255, 255, 255, 0.08); color: #D8D0FF; }
+.type-target .done { color: #6FD08E; }
+.type-target .part { color: #FFE29A; }
+.input.type-in { background: rgba(255, 255, 255, 0.95); color: #16141F; border-color: transparent; font-size: 19px; min-height: 96px; }
+
+.mem-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; width: 100%; max-width: 320px; }
+.mem-cell { aspect-ratio: 1; border: 0; border-radius: 20px; background: rgba(255, 255, 255, 0.12); transition: background .12s, transform .12s; }
+.mem-cell.lit { background: #FFC93C; transform: scale(1.04); box-shadow: 0 0 30px rgba(255, 201, 60, 0.5); }
+.mem-cell.good { background: #6FD08E; }
+.mem-cell.bad { background: #FF8A80; }
+.mem-cell[aria-disabled="true"] { cursor: default; }
+
+.order-grid { display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); gap: 10px; width: 100%; max-width: 360px; }
+.order-cell { aspect-ratio: 1.15; border: 0; border-radius: 16px; background: rgba(255, 255, 255, 0.12); color: #FFFFFF; font-size: 26px; font-weight: 700; touch-action: manipulation; }
+.order-cell.done { background: rgba(111, 208, 142, 0.25); color: #6FD08E; }
+.order-cell.bad { background: #FF8A80; color: #2A0A07; animation: shake .3s; }
+
+.cam-box { position: relative; width: 100%; aspect-ratio: 4 / 3; border-radius: 20px; overflow: hidden; background: #000; }
+.cam-box video, .cam-box > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cam-ref { position: absolute; top: 10px; right: 10px; width: 30%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px; border: 2px solid #FFC93C; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45); }
+.photo-ctl { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.cam-box.setup { border-radius: 18px; }
+
+@media (max-height: 620px), (max-width: 340px) {
+  .key { min-height: 50px; font-size: 24px; }
+  .keypad { gap: 8px; }
+  .math-q { font-size: 32px; padding: 10px 12px; }
+  .move-ring { width: 170px; height: 170px; }
+  .move-in b { font-size: 46px; }
+  .type-target { font-size: 18px; }
+}

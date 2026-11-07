@@ -1,0 +1,32 @@
+/* קמתי's colours and font on top of the shared Itzko kit (the same as the app, www/css/base.css). */
+@font-face {
+  font-family: 'Rubik';
+  src: url('../fonts/Rubik-var.ttf') format('truetype');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  --primary: #5B3DF5;
+  --primary-text: #4327C9;
+  --primary-soft: #ECE8FF;
+  --on-primary: #FFFFFF;
+  --hero: #3A24B8;
+  --hero-ink: #FFFFFF;
+  --hero-muted: #E2DBFF;
+  --hero-btn-ink: #3A24B8;
+  --maker-accent: #4327C9;
+  --credit-accent: #FFC93C;
+  --credit-mono: #5B3DF5;
+  --credit-mono-ink: #FFFFFF;
+  --credit-glow: rgba(91, 61, 245, 0.22);
+  --shadow: 0 18px 40px -18px rgba(91, 61, 245, 0.4);
+  --font: 'Rubik', 'Segoe UI', 'Arial Hebrew', Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --primary: #8E7BFF; --primary-text: #B9ADFF; --primary-soft: #262045; --on-primary: #0F0D1A; --hero: #2A1B8E; --hero-muted: #D9D1FF; --shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.7); }
+}
+:root[data-theme="dark"] { --primary: #8E7BFF; --primary-text: #B9ADFF; --primary-soft: #262045; --on-primary: #0F0D1A; --hero: #2A1B8E; --hero-muted: #D9D1FF; --shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.7); }
+.lock-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.lock-list li { display: flex; gap: 8px; align-items: flex-start; }
+.lock-list li::before { content: '🔒'; flex: none; }
