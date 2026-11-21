@@ -1,0 +1,38 @@
+/* Alarm editor: the time picker, days, task rows, the hour/minute grid, the photo reference */
+.time-picker { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 6px 0 0; }
+.tp-col { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.tp-arrow { width: 92px; height: 44px; border: 0; border-radius: 14px; background: transparent; color: var(--primary-text); display: flex; align-items: center; justify-content: center; touch-action: manipulation; user-select: none; -webkit-user-select: none; }
+.tp-arrow:active { background: var(--primary-soft); }
+.tp-num { min-width: 112px; height: 96px; border-radius: 22px; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); font-size: 66px; font-weight: 700; letter-spacing: -1px; display: flex; align-items: center; justify-content: center; font-variant-numeric: tabular-nums; }
+.tp-colon { font-size: 56px; font-weight: 700; color: var(--faint); padding-bottom: 8px; }
+.tp-until { text-align: center; margin: -4px 0 0; font-size: 14px; font-weight: 600; color: var(--primary-text); min-height: 20px; }
+
+.days-row { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+.day { aspect-ratio: 1; max-height: 52px; min-height: 40px; border-radius: 50%; border: 1.5px solid var(--line); background: var(--surface); color: var(--muted); font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center; padding: 0; }
+.day[aria-pressed="true"] { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
+.days-txt { font-size: 13px; color: var(--muted); margin-inline-start: auto; }
+
+.task-row { gap: 8px; padding-inline-end: 4px; }
+.task-row .num { width: 26px; height: 26px; border-radius: 50%; background: var(--primary-soft); color: var(--primary-text); font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; flex: none; }
+.task-row .t svg { color: var(--primary-text); }
+.task-row .icon-btn { color: var(--faint); }
+.add-row .t { color: var(--primary-text); font-weight: 600; }
+
+.num-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.num-grid.h { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.num-grid button { min-height: 52px; border-radius: 14px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-size: 18px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.num-grid button[aria-pressed="true"] { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
+
+.task-hero { display: flex; align-items: center; gap: 14px; }
+.task-hero p { margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted); }
+.photo-ref { display: flex; gap: 12px; align-items: center; }
+.photo-ref img { width: 96px; height: 72px; object-fit: cover; border-radius: 12px; flex: none; }
+.photo-ref .grow { display: flex; flex-direction: column; gap: 4px; }
+.snd-row { padding-inline-end: 4px; gap: 4px; }
+.snd-row .grow.plain[aria-pressed="true"] .t { color: var(--primary-text); font-weight: 700; }
+
+@media (max-width: 340px) {
+  .tp-num { min-width: 92px; height: 80px; font-size: 52px; }
+  .tp-arrow { width: 76px; }
+  .num-grid.h { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}

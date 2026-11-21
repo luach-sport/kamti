@@ -1,0 +1,97 @@
+/* קמתי – fonts, colours (light and dark), resets */
+@font-face {
+  font-family: 'Rubik';
+  src: url('../fonts/Rubik-var.ttf') format('truetype');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg: #F4F3FA;
+  --surface: #FFFFFF;
+  --inset: #EAE8F3;
+  --line: #E3E0EE;
+  --line-soft: #EFEDF6;
+  --line-strong: #CAC6DA;
+  --ink: #16141F;
+  --ink-2: #2D2A3A;
+  --muted: #5D5970;
+  --faint: #8E8AA0;
+  --primary: #5B3DF5;
+  --primary-press: #4A2FDB;
+  --primary-text: #4327C9;
+  --primary-soft: #ECE8FF;
+  --on-primary: #FFFFFF;
+  --sun: #FFC93C;
+  --chip-dark: #16141F;
+  --chip-dark-ink: #FFFFFF;
+  --green-text: #1D7A45;
+  --green-soft: #E3F4E5;
+  --red-text: #B3261E;
+  --red-soft: #FDECEA;
+  --amber-text: #8A5A00;
+  --amber-soft: #FFF1CF;
+  --track: #8E8AA0;
+  --shadow-card: 0 1px 2px rgba(22, 20, 31, 0.05);
+  --shadow-fab: 0 10px 24px rgba(91, 61, 245, 0.38);
+  --backdrop: rgba(17, 16, 25, 0.5);
+  --nav-h: 72px;
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --bg: #111019;
+  --surface: #1B1A26;
+  --inset: #262433;
+  --line: #2D2B3B;
+  --line-soft: #262433;
+  --line-strong: #3D3A4E;
+  --ink: #F2F1F7;
+  --ink-2: #D8D6E3;
+  --muted: #A6A3B8;
+  --faint: #7F7B94;
+  --primary: #8E7BFF;
+  --primary-press: #7C67FA;
+  --primary-text: #B9ADFF;
+  --primary-soft: #262045;
+  --on-primary: #0F0D1A;
+  --chip-dark: #F2F1F7;
+  --chip-dark-ink: #111019;
+  --green-text: #6FD08E;
+  --green-soft: #17301F;
+  --red-text: #FF8A80;
+  --red-soft: #3A1A17;
+  --amber-text: #F5C451;
+  --amber-soft: #3A2E12;
+  --track: #5E5A72;
+  --shadow-card: none;
+  --shadow-fab: 0 10px 24px rgba(142, 123, 255, 0.3);
+  --backdrop: rgba(0, 0, 0, 0.62);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; overflow-x: clip; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Rubik', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+a { color: var(--primary-text); text-decoration: none; }
+svg.i { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+svg.i.sm { width: 18px; height: 18px; }
+svg.i.xs { width: 14px; height: 14px; }
+svg.i.lg { width: 30px; height: 30px; }
+.ltr { direction: ltr; unicode-bidi: isolate; }
+.hidden { display: none !important; }
+:focus-visible { outline: 3px solid var(--primary-text); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
