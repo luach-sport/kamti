@@ -1,0 +1,30 @@
+/* Alarms tab: the "next alarm" card and the alarm cards */
+.next-card { position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 4px; padding: 18px 20px 18px; border-radius: 24px; color: #FFFFFF;
+  background: radial-gradient(120% 90% at 15% 120%, rgba(255, 159, 67, 0.55), rgba(255, 159, 67, 0) 60%), linear-gradient(160deg, #2A1B6E 0%, #5B3DF5 70%, #7A5CFF 100%); box-shadow: 0 18px 36px -20px rgba(91, 61, 245, 0.7); }
+.next-card::after { content: ''; position: absolute; left: 22px; bottom: -34px; width: 88px; height: 88px; border-radius: 50%; background: #FFC93C; opacity: .9; box-shadow: 0 0 40px 10px rgba(255, 201, 60, 0.35); }
+.next-card > * { position: relative; z-index: 1; }
+.next-k { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: #DCD4FF; }
+.next-time { font-size: 60px; line-height: 1.05; font-weight: 800; letter-spacing: -1px; align-self: flex-start; }
+.next-sub { font-size: 15px; font-weight: 500; color: #F1EDFF; }
+.next-tasks { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; padding-left: 92px; }
+.next-tasks .nt { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; padding: 4px 9px; border-radius: 99px; background: rgba(255, 255, 255, 0.16); }
+.next-card.off { background: var(--surface); color: var(--ink); border: 1px solid var(--line); box-shadow: none; }
+.next-card.off::after { display: none; }
+.next-card.off .next-k { color: var(--ink); font-size: 17px; font-weight: 700; }
+.next-card.off .next-sub { color: var(--muted); font-size: 14px; margin: 0; line-height: 1.5; }
+
+.alarm-list { display: flex; flex-direction: column; gap: 10px; }
+.alarm-card { display: flex; align-items: center; gap: 4px; padding: 4px 6px 4px 4px; border-radius: 20px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-card); }
+.alarm-main { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 14px; border: 0; background: transparent; color: var(--ink); text-align: right; }
+.alarm-time { font-size: 38px; line-height: 1; font-weight: 700; letter-spacing: -0.5px; }
+.alarm-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.alarm-meta .lbl { font-size: 14px; font-weight: 600; color: var(--ink-2); }
+.alarm-meta .once { font-size: 13px; font-weight: 600; color: var(--muted); }
+.day-dots { display: inline-flex; gap: 3px; }
+.day-dots i { font-style: normal; width: 20px; height: 20px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: var(--faint); }
+.day-dots i.on { color: var(--primary-text); background: var(--primary-soft); }
+.alarm-sub { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--muted); }
+.alarm-sub svg { color: var(--primary-text); }
+.alarm-sub span { margin-inline-start: 4px; }
+.alarm-card.off .alarm-time, .alarm-card.off .alarm-meta { opacity: .45; }
+.alarm-card.off .alarm-sub svg { color: var(--faint); }
